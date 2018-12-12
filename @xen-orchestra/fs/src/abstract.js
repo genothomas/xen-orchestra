@@ -223,6 +223,13 @@ export default class RemoteHandlerAbstract {
     await this._forget()
   }
 
+  async getInfo() {
+    return timeout.call(
+      this._getInfo(normalizePath(this._remote.path)),
+      this._timeout
+    )
+  }
+
   async getSize(file: File): Promise<number> {
     return timeout.call(
       this._getSize(typeof file === 'string' ? normalizePath(file) : file),
@@ -431,6 +438,10 @@ export default class RemoteHandlerAbstract {
   // called to finalize the remote
   async _forget(): Promise<void> {}
 
+  async _getInfo(dir: string) {
+    throw new Error('Not implemented')
+  }
+
   async _getSize(file: File): Promise<number> {
     throw new Error('Not implemented')
   }
@@ -530,14 +541,6 @@ export default class RemoteHandlerAbstract {
     data: Data,
     options: { flags?: string }
   ): Promise<void> {
-    throw new Error('Not implemented')
-  }
-
-  async getInfoDisk(dir: string): Promise<number> {
-    return timeout.call(this._getInfoDisk(normalizePath(dir)), this._timeout)
-  }
-
-  async _getInfoDisk(dir: string): Promise<number> {
     throw new Error('Not implemented')
   }
 }

@@ -223,7 +223,7 @@ export default class RemoteHandlerAbstract {
     await this._forget()
   }
 
-  async getInfo() {
+  async getInfo(): Promise<Object> {
     return timeout.call(this._getInfo(), this._timeout)
   }
 
@@ -435,7 +435,7 @@ export default class RemoteHandlerAbstract {
   // called to finalize the remote
   async _forget(): Promise<void> {}
 
-  async _getInfo() {
+  async _getInfo(): Promise<Object> {
     return {}
   }
 

@@ -92,7 +92,7 @@ class Audit {
       isEmpty(logs) ||
       (log !== undefined &&
         hash === createHash(log) &&
-        (log.parent === undefined || this.checkIntegrity(log.parent)))
+        (Object.keys(logs)[0] === hash || this.checkIntegrity(log.parent)))
     )
   }
 
